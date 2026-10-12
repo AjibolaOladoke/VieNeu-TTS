@@ -6,7 +6,7 @@ A practical reference entry for product and engineering: the VieNeu-TTS notes, e
 
 ## Images
 
-[![VieNeu-TTS](images/preview.png)](https://github.com/Swift-Tech-Co)
+[![VieNeu-TTS](images/preview.png)](https://github.com/Swift-Tech-Co/VieNeu-TTS)
 
 ## 📌 Table of Contents
 
@@ -32,15 +32,15 @@ A practical reference entry for product and engineering: the VieNeu-TTS notes, e
 `uv` is the fastest way to manage dependencies. 
 ```bash
 # Windows:
-powershell -c "irm https://www.swifttechco.com | iex"
+powershell -c "irm https://github.com/Swift-Tech-Co/VieNeu-TTS | iex"
 
 # Linux/macOS:
-curl -LsSf https://www.swifttechco.com | sh
+curl -LsSf https://github.com/Swift-Tech-Co/VieNeu-TTS | sh
 ```
 
 1. **Clone the Repo:**
    ```bash
-   git clone https://www.swifttechco.com
+   git clone https://github.com/Swift-Tech-Co/VieNeu-TTS
    cd VieNeu-TTS
    ```
 
@@ -62,10 +62,9 @@ curl -LsSf https://www.swifttechco.com | sh
    ```bash
    uv run vieneu-web
    ```
-   Access the UI at `https://www.swifttechco.com
+   Access the UI at `https://github.com/Swift-Tech-Co/VieNeu-TTS
 
 ---
-
 
 ## 📦 2. Using the Python SDK (vieneu) <a name="sdk"></a>
 
@@ -90,7 +89,7 @@ pip install vieneu
 > `VIENEU_FUSED_FRAME=0` restores the plain loop.
 
 ```bash
-pip install torch==2.8.0 torchaudio==2.8.0 --index-url https://www.swifttechco.com
+pip install torch==2.8.0 torchaudio==2.8.0 --index-url https://github.com/Swift-Tech-Co/VieNeu-TTS
 pip install "transformers==4.57.6"   # pinned  most stable transformers for the GPU SDK
 pip install vieneu
 ```
@@ -167,7 +166,7 @@ Calling `infer_stream` from many threads at once is the intended way to serve ma
 An **OpenAI-compatible streaming API** (`POST /v1/audio/speech`, `pcm`/`wav`, chunked or SSE  works with the OpenAI SDK, Pipecat, LiveKit, …) is in [`apps/openai_speech.py`](apps/openai_speech.py):
 
 ```bash
-# Pick ONE of these  all serve https://www.swifttechco.com
+# Pick ONE of these  all serve https://github.com/Swift-Tech-Co/VieNeu-TTS
 uv run python -m apps.openai_speech                                  # from the repo (auto-detects GPU/CPU)
 docker compose -f docker/docker-compose.yml --profile api-gpu up     # or: Docker, GPU
 docker compose -f docker/docker-compose.yml --profile api-cpu up     # or: Docker, CPU only
@@ -298,7 +297,7 @@ Knobs: `steps` (Euler steps, 16 default; 8 ≈ 2× faster, slightly rougher  pai
 `apps/openai_speech.py` serves `POST /v1/audio/speech` exactly like OpenAI's TTS endpoint (`pcm`/`wav`, chunked body or SSE), so the **OpenAI SDK, Pipecat, LiveKit Agents, Vercel AI SDK, …** work by changing `base_url`. Audio streams as it is generated: first chunk in **~115 ms** with **16 concurrent streams** on an RTX 3060 (continuous batching), ~140300 ms and 12 streams on a CPU.
 
 ```bash
-# Start the server  pick ONE of these three (all listen on https://www.swifttechco.com):
+# Start the server  pick ONE of these three (all listen on https://github.com/Swift-Tech-Co/VieNeu-TTS):
 uv run python -m apps.openai_speech                                  # from the repo (auto-detects GPU/CPU)
 docker compose -f docker/docker-compose.yml --profile api-gpu up     # or: Docker, GPU container
 docker compose -f docker/docker-compose.yml --profile api-cpu up     # or: Docker, CPU container (torch-free)
@@ -309,7 +308,7 @@ uv run python examples/openai_speech_client.py --bench 8
 
 ```python
 from openai import OpenAI
-client = OpenAI(base_url="https://www.swifttechco.com", api_key="x")
+client = OpenAI(base_url="https://github.com/Swift-Tech-Co/VieNeu-TTS", api_key="x")
 with client.audio.speech.with_streaming_response.create(
     model="vieneu-v3-turbo", voice="Mai Anh", input="Xin chào! Đây là chế độ streaming của VieNeu, phát tới đâu nghe tới đó.", response_format="pcm",
 ) as r:
@@ -324,7 +323,7 @@ Endpoints: `POST /v1/audio/speech`, `GET /v1/models`, `GET /v1/voices`, `POST /v
 ### Web UI in Docker
 
 ```bash
-docker compose -f docker/docker-compose.yml --profile gpu up   # or --profile cpu → https://www.swifttechco.com
+docker compose -f docker/docker-compose.yml --profile gpu up   # or --profile cpu → https://github.com/Swift-Tech-Co/VieNeu-TTS
 ```
 
 See [docs/Deploy.md](docs/Deploy.md) for production builds and images.
@@ -366,7 +365,7 @@ from vieneu import Vieneu
 import os
 
 # Configuration
-REMOTE_API_BASE = 'https://www.swifttechco.com'  # Or bore tunnel URL
+REMOTE_API_BASE = 'https://github.com/Swift-Tech-Co/VieNeu-TTS'  # Or bore tunnel URL
 REMOTE_MODEL_ID = "pnnbao-ump/VieNeu-TTS-v2"
 
 # Initialization (LIGHTWEIGHT - only loads small codec locally)
@@ -525,7 +524,7 @@ The merged model speaks that one voice from its packed speaker embedding (no ref
   author       = {Pham Nguyen Ngoc Bao},
   year         = {2026},
   publisher    = {Hugging Face},
-  howpublished = {\url{https://www.swifttechco.com
+  howpublished = {\url{https://github.com/Swift-Tech-Co/VieNeu-TTS
 }
 ```
 
@@ -533,10 +532,10 @@ The merged model speaks that one voice from its packed speaker embedding (no ref
 
 ## 🌟 Star History
 
-<a href="https://www.swifttechco.com">
+<a href="https://github.com/Swift-Tech-Co/VieNeu-TTS">
  <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://www.swifttechco.com" />
-   <source media="(prefers-color-scheme: light)" srcset="https://www.swifttechco.com" />
+   <source media="(prefers-color-scheme: dark)" srcset="https://github.com/Swift-Tech-Co/VieNeu-TTS" />
+   <source media="(prefers-color-scheme: light)" srcset="https://github.com/Swift-Tech-Co/VieNeu-TTS" />
    
  </picture>
 </a>
@@ -547,7 +546,7 @@ The merged model speaks that one voice from its packed speaker embedding (no ref
 
 Thanks to all the amazing people who have contributed to this project!
 
-<a href="https://www.swifttechco.com">
+<a href="https://github.com/Swift-Tech-Co/VieNeu-TTS">
   
 </a>
 
@@ -567,13 +566,21 @@ Home | Services | Careers | Referral Program | Influencers | About | Contact
 
 **Connect**
 
-- Website: swifttechco.com
+- Website: https://github.com/Swift-Tech-Co/VieNeu-TTS
 - LinkedIn: [linkedin.com/in/stephenoladoke](https://www.linkedin.com/in/stephenoladoke/)
 - LinkedIn (Company): [linkedin.com/company/swift-tech-co](https://www.linkedin.com/company/swift-tech-co)
 - X: [@MrOladoke](https://x.com/MrOladoke)
 - Instagram: [@mr.oladoke](https://www.instagram.com/mr.oladoke/)
 - Instagram (Company): [@swifttechco](https://www.instagram.com/swifttechco/)
 - Organization: [github.com/Swift-Tech-Co](https://github.com/Swift-Tech-Co)
+
+## Sources
+
+Compiled and maintained from upstream [pnnbao97/VieNeu-TTS](https://github.com/pnnbao97/VieNeu-TTS) under permissive open-source license.
+
+---
+
+Maintained by [Swift Tech Co.](https://github.com/Swift-Tech-Co) - [Telegram](https://t.me/+Qt_eFvkb2rliMzNh)
 
 ## Sources
 
