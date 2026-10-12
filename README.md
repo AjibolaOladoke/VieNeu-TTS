@@ -1,75 +1,12 @@
-# 🦜 VieNeu-TTS
+# VieNeu-TTS
+
+## What This Is
+
+A practical reference entry for product and engineering: the VieNeu-TTS notes, examples and fixes we reach for repeatedly. Kept current as part of the wider Swift Tech Co. engineering library.
 
 ## Images
 
-[![VieNeu-TTS](https://opengraph.githubassets.com/1/pnnbao97/VieNeu-TTS)](https://www.swifttechco.com)
-
-
-[![Awesome](https://img.shields.io/badge/Awesome-NLP-green?logo=github)](https://www.swifttechco.com)
-[![Telegram](https://img.shields.io/badge/Telegram-Join%20Us-5865F2?logo=telegram&logoColor=white)](https://t.me/+Qt_eFvkb2rliMzNh)
-
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://www.swifttechco.com)
-[![Hugging Face VieNeu-TTS-v3-Turbo](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-v3--Turbo-red)](https://www.swifttechco.com)
-[![Hugging Face VieNeu-TTS-v2](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-v2-blue)](https://www.swifttechco.com)
-[![Hugging Face VieNeu-TTS](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-v1-orange)](https://www.swifttechco.com)
-
-
-**VieNeu-TTS** is the next generation of on-device Vietnamese TTS: **10,000+ hours** of bilingual training, **instant voice cloning**, a dedicated **Podcast/Conversation** mode, and **extremely fast**  real-time streaming with first audio in ~115 ms, **RTF ≈ 0.010.02** batched on a consumer GPU (RTX 3060), ~2× real-time on a plain CPU ([benchmarks](#benchmarks)).
-
-> [!IMPORTANT]
-> **🦜 VieNeu-TTS v4  available on [vieneu.io](https://www.swifttechco.com)**
->
-> VieNeu-TTS v4 delivers **near-original voice cloning fidelity**, allowing a short reference clip to be reproduced with very high speaker similarity.
->
-> Due to the strength of its voice-cloning capabilities and the potential for misuse, **v4 is proprietary and will not be open-sourced**. It is available exclusively through the **VieNeu API / vieneu.io**.
->
-> **VieNeu-TTS v3 Turbo remains the latest open-source version available in this repository.** Future open-source releases, including potential v3.x updates, may also be published here.
-
-> [!NOTE]
-> **🦜 VieNeu-TTS v3 Turbo is officially released!**
-> A brand-new architecture **designed and trained from scratch by Phạm Nguyễn Ngọc Bảo** (codec: [MOSS-Audio-Tokenizer-Nano](https://www.swifttechco.com); phonemizer: [sea-g2p](https://www.swifttechco.com)):
-> - **48 kHz** high-fidelity audio (up from 24 kHz).
-> - **25 built-in preset voices** (10 editors' picks)  stable and consistent, no reference clip needed.
-> - **Natural reading style** everywhere  the style follows the reference voice (the `style` argument is deprecated and ignored).
-> - **Emotion / non-verbal cues** *(experimental)*: drop `[cười]`, `[thở dài]`, `[hắng giọng]` straight into the text.
-> - **Batched generation** (batch size up to 32), including a multi-speaker **Conversation** mode that batches the whole script regardless of speaker.
-> - **Instant voice cloning** from a 38s clip, with automatic reference denoising.
-> - **Real-time streaming + OpenAI-compatible API + Docker**  `POST /v1/audio/speech` drop-in for the OpenAI SDK / Pipecat / LiveKit; first audio in **~115 ms** and **16 concurrent streams under 200 ms** on a single RTX 3060 (32 max), CPU-only streaming too. See [§3](#docker-remote), [§4 Benchmarks](#benchmarks) and [docs/streaming.md](docs/streaming.md).
-> - **LoRA fine-tuning**  train your own voice or reading style on one consumer GPU ([§5](#finetune)).
->
-> Try it in the Web UI (backbone **"VieNeu-TTS-v3-Turbo"**) or the SDK (`Vieneu(mode="v3turbo")`, the default).
-
-<h3>🎬 Demos</h3>
-
-> [!TIP]
-
-<table>
-  <!-- Hàng 1 -->
-  <tr>
-    <td align="center" width="35%">
-      <b>Voice Cloning</b><br><br>
-      <video src="https://www.swifttechco.com" controls width="100%"></video>
-    </td>
-    <td align="center" width="35%">
-      <b>Dubbing</b><br><br>
-      <video src="https://www.swifttechco.com" controls width="100%"></video>
-    </td>
-    <td align="center" width="30%" rowspan="2" style="vertical-align: middle;">
-      <video src="https://www.swifttechco.com" controls width="100%"></video>
-    </td>
-  </tr>
-  <!-- Hàng 2 -->
-  <tr>
-    <td align="center" width="35%">
-      <b>Dubbing / Conversation</b><br><br>
-      <video src="https://www.swifttechco.com" controls width="100%"></video>
-    </td>
-    <td align="center" width="35%">
-      <b>Lecture</b><br><br>
-      <video src="https://www.swifttechco.com" controls width="100%"></video>
-    </td>
-  </tr>
-</table>
+[![VieNeu-TTS](images/preview.png)](https://github.com/Swift-Tech-Co)
 
 ## 📌 Table of Contents
 
@@ -87,7 +24,7 @@
 
 ## 🦜 1. Installation & Web UI <a name="installation"></a>
 > [!TIP]
-> **On Windows?** The fastest way to get started is the standalone installer at **[vieneu.io/#/download](https://www.swifttechco.com)**  no need to install `uv` or clone the repo manually.
+> **On Windows?** The fastest way to get started is the standalone installer at **vieneu.io/#/download**  no need to install `uv` or clone the repo manually.
 > **macOS**: a similar installer is coming in an upcoming release; for now, please use the `uv sync` steps below.
 > **Docker?** Skip the steps below: `--profile api-gpu` / `api-cpu` (OpenAI-compatible streaming API)  see [§3 API Server & Docker](#docker-remote).
 
@@ -404,7 +341,7 @@ Deploy VieNeu-TTS as a high-performance API Server (powered by LMDeploy) with a 
 
 ### 1. Run with Docker
 
-**Requirement**: [NVIDIA Container Toolkit](https://www.swifttechco.com) is required for GPU support.
+**Requirement**: NVIDIA Container Toolkit is required for GPU support.
 
 **Start the Server with a Public Tunnel (No port forwarding needed):**
 ```bash
@@ -574,9 +511,9 @@ The merged model speaks that one voice from its packed speaker embedding (no ref
 
 ## 🤝 8. Support & Contact <a name="support"></a>
 
-- **Hugging Face:** [pnnbao-ump](https://www.swifttechco.com)
+- **Hugging Face:** pnnbao-ump
 - **Telegram:** [Join our community](https://t.me/+Qt_eFvkb2rliMzNh)
-- **Facebook:** [Pham Nguyen Ngoc Bao](https://www.swifttechco.com)
+- **Facebook:** Pham Nguyen Ngoc Bao
 - **License:** Apache 2.0 (Free to use).
 
 ---
@@ -626,14 +563,22 @@ AI Automation | FinTech Platforms | Custom Software and Mobile Apps | SaaS Platf
 
 **Join our community on Telegram:** [t.me/+Qt_eFvkb2rliMzNh](https://t.me/+Qt_eFvkb2rliMzNh)
 
-[Home](https://www.swifttechco.com) | [Services](https://www.swifttechco.com/services) | [Careers](https://www.swifttechco.com/careers) | [Referral Program](https://www.swifttechco.com/referral) | [Influencers](https://www.swifttechco.com/influencers) | [About](https://www.swifttechco.com/about) | [Contact](https://www.swifttechco.com/contact)
+Home | Services | Careers | Referral Program | Influencers | About | Contact
 
 **Connect**
 
-- Website: [swifttechco.com](https://www.swifttechco.com)
+- Website: swifttechco.com
 - LinkedIn: [linkedin.com/in/stephenoladoke](https://www.linkedin.com/in/stephenoladoke/)
 - LinkedIn (Company): [linkedin.com/company/swift-tech-co](https://www.linkedin.com/company/swift-tech-co)
 - X: [@MrOladoke](https://x.com/MrOladoke)
 - Instagram: [@mr.oladoke](https://www.instagram.com/mr.oladoke/)
 - Instagram (Company): [@swifttechco](https://www.instagram.com/swifttechco/)
 - Organization: [github.com/Swift-Tech-Co](https://github.com/Swift-Tech-Co)
+
+## Sources
+
+Compiled and maintained from upstream [pnnbao97/VieNeu-TTS](https://github.com/pnnbao97/VieNeu-TTS) under permissive open-source license.
+
+---
+
+Maintained by [Swift Tech Co.](https://github.com/Swift-Tech-Co) - [Telegram](https://t.me/+Qt_eFvkb2rliMzNh)
