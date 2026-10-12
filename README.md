@@ -604,3 +604,11 @@ Compiled and maintained from upstream [pnnbao97/VieNeu-TTS](https://github.com/p
 ---
 
 Maintained by [Swift Tech Co.](https://github.com/Swift-Tech-Co) - [Telegram](https://t.me/+Qt_eFvkb2rliMzNh)
+
+## Sources
+
+Compiled and maintained from upstream [pnnbao97/VieNeu-TTS](https://github.com/pnnbao97/VieNeu-TTS) under permissive open-source license.
+
+---
+
+Maintained by [Swift Tech Co.](https://github.com/Swift-Tech-Co) - [Telegram](https://t.me/+Qt_eFvkb2rliMzNh)
